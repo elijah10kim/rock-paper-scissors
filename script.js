@@ -53,8 +53,15 @@ function game() {
     let computerScore = 0;
     let playerSelection;
     let computerSelection;
+    let validInput;
     for (let i=0; i < 5; i++) {
-        playerSelection = prompt("Please enter rock, paper or scissors.");
+        validInput = false;
+        while (!validInput) {
+            playerSelection = prompt("Please enter rock, paper or scissors.");
+            if (playerSelection.toLowerCase() === 'rock' || playerSelection.toLowerCase() === 'paper' || playerSelection.toLowerCase() === 'scissors') {
+                validInput = true;
+            }
+        }
         computerSelection = getComputerChoice();
         roundMsg = playRound(playerSelection, computerSelection)
         roundResult = determineWin(playRound(playerSelection, computerSelection))
