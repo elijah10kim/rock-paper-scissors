@@ -1,3 +1,16 @@
+/*
+To Add:
+  1. Start Screen with formatted h1 and styled larger button
+  2. Event listener to set display: none for the start scren
+     and set display: flex to the container div to make it visible.
+  3. Event listener when clicking start also calls game function.
+  4. Game Function keeps score and defines the results, scores,
+     also checks first to 5 and displays winner
+  5. Style the rps buttons, and the score text.
+
+*/
+
+
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => playRound(button.id, getComputerChoice()));
@@ -63,6 +76,9 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
+
+
+/*
 function determineWin(resultMsg) {
     let result;
     if (resultMsg === "You Win! Rock beats Scissors" || resultMsg === "You Win! Paper beats Rock" || resultMsg === "You Win! Scissors beats Paper") {
@@ -74,7 +90,11 @@ function determineWin(resultMsg) {
     }
     return result;
 }
+*/
 
+function game() {
+
+}
 
 /*function game() {
     let playerScore = 0;

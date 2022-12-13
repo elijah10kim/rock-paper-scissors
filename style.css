@@ -1,11 +1,41 @@
 body {
     padding: 0;
     margin: 0;
+    background-color:bisque;
 }
 
-#container {
+#start-screen {
     display: flex;
-    background-color:bisque;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+
+}
+
+h1 {
+    color: darkslateblue;
+    font-family: 'Teko', sans-serif;
+    font-size: 300%;
+}
+
+#start-btn {
+    border: 1px solid darkslateblue;
+    background-color:antiquewhite;
+    padding: 30px 40px;
+    font-size: 25px;
+    font-family: 'Teko', sans-serif;
+    transition-duration: 0.5s;
+}
+
+#start-btn:hover {
+    background-color: rgb(212, 212, 212);
+    color:darkslateblue;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
+}
+#container {
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
