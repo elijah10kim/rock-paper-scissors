@@ -11,19 +11,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="start-screen">
+    <div class="start-screen">
         <h1>Rock Paper Scissors</h1>
         <button id="start-btn">Start Game</button>
     </div>
-    <div id="container">
-        <div id="button-container">
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissors">Scissors</button>
-        </div>
+    <div class="game-container">
         <div id="results">First to 5. Good luck!</div>
+        <div class="button-container">
+            <button class= 'game-btn' id="rock">Rock</button>
+            <button class= 'game-btn' id="paper">Paper</button>
+            <button class= 'game-btn' id="scissors">Scissors</button>
+        </div>
+        <div class="game-active">
+            <button id="play-again-btn">Play Again</button>
+        </div>
         <div id="score">
             <div id="player"></div>
+            <div id="dash"> - </div>
             <div id="computer"></div>
         </div>
     </div>

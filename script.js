@@ -1,29 +1,27 @@
-/*
-To Add:
-  1. Start Screen with formatted h1 and styled larger button
-  2. Event listener to set display: none for the start scren
-     and set display: flex to the container div to make it visible.
-  3. Event listener when clicking start also calls game function.
-  4. Game Function keeps score and defines the results, scores,
-     also checks first to 5 and displays winner
-  5. Style the rps buttons, and the score text.
+const startButton = document.querySelector('#start-btn');
+startButton.addEventListener('click', gameScreen);
 
-*/
+const startScreen = document.querySelector('.start-screen');
+const gameContainer = document.querySelector('.game-container');
+const gameOverScreen = document.querySelector('.game-active');
+const buttonContainer = document.querySelector('.button-container');
 
-
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.game-btn');
 buttons.forEach((button) => {
     button.addEventListener('click', () => playRound(button.id, getComputerChoice()));
 });
+
+const playAgainButton = document.querySelector('#play-again-btn');
+playAgainButton.addEventListener('click', restartGame);
 
 const results = document.querySelector('#results');
 const pScore = document.querySelector('#player');
 const cScore = document.querySelector('#computer');
 let playerScore = 0;
 let computerScore = 0;
+let gameOver = false;
 pScore.textContent = playerScore;
 cScore.textContent = computerScore;
-
 
 function getComputerChoice(){
     let number = Math.floor((Math.random()*3)+1)
@@ -73,60 +71,44 @@ function playRound(playerSelection, computerSelection) {
             cScore.textContent = computerScore;
         }
     }
+    checkWin(playerScore, computerScore);
+}
+
+function gameScreen() {
+    startScreen.classList.toggle('start-screen');
+    startScreen.classList.toggle('start-visible');
+    gameContainer.classList.toggle('game-container');
+    gameContainer.classList.toggle('game-start');
 }
 
 
-
-
-/*
-function determineWin(resultMsg) {
-    let result;
-    if (resultMsg === "You Win! Rock beats Scissors" || resultMsg === "You Win! Paper beats Rock" || resultMsg === "You Win! Scissors beats Paper") {
-        result = "W";
-    } else if (resultMsg === "Tie Game. Better luck next time") {
-        result = "T";
-    } else {
-        result = "L";
+function checkWin(playerScore, computerScore) {
+    if (playerScore == 5) {
+        results.textContent = `Congratulations! You won ${playerScore}-${computerScore}`;
+        gameOver = true;
     }
-    return result;
-}
-*/
-
-function game() {
-
-}
-
-/*function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    let playerSelection;
-    let computerSelection;
-    let validInput;
-    //for (let i=0; i < 5; i++) {
-        validInput = false;
-        while (!validInput) {
-            playerSelection = prompt("Please enter rock, paper or scissors.");
-            if (playerSelection.toLowerCase() === 'rock' || playerSelection.toLowerCase() === 'paper' || playerSelection.toLowerCase() === 'scissors') {
-                validInput = true;
-            }
-        }
-        computerSelection = getComputerChoice();
-        roundMsg = playRound(playerSelection, computerSelection)
-        roundResult = determineWin(playRound(playerSelection, computerSelection))
-        if (roundResult === "W") {
-            playerScore += 1;
-        } else if (roundResult === "L") {
-            computerScore += 1;
-        } 
-        console.log(roundMsg);
-        console.log(`The score is - Player: ${playerScore} | Computer: ${computerScore}`);
-    //}
-    if (playerScore > computerScore) {
-        console.log(`Congratulations. You won ${playerScore}-${computerScore}`);
-    } else if (playerScore < computerScore) {
-        console.log(`You lost ${playerScore}-${computerScore}. Better luck next time.`);
-    } else {
-        console.log(`Tie Game. The score was ${playerScore}-${computerScore}`);
+    if (computerScore == 5) {
+        results.textContent = `Game Over. You lost ${playerScore}-${computerScore}`;
+        gameOver = true;
+    }
+    if (gameOver) {
+        buttonContainer.classList.toggle('button-container');
+        buttonContainer.classList.toggle('buttons-inactive');
+        gameOverScreen.classList.toggle('game-active');
+        gameOverScreen.classList.toggle('game-over');
     }
 }
-*/
+
+function restartGame() {
+    gameOver = false;
+    playerScore = 0;
+    computerScore = 0;
+    buttonContainer.classList.toggle('button-container');
+    buttonContainer.classList.toggle('buttons-inactive');
+    gameOverScreen.classList.toggle('game-active');
+    gameOverScreen.classList.toggle('game-over');
+    results.textContent = "First to 5. Good luck!";
+    pScore.textContent = playerScore;
+    cScore.textContent = computerScore;
+}
+
